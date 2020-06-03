@@ -24,7 +24,7 @@ bool DebugLine(char *line, ...) {
         va_start(ap, line);
         vsnprintf(text, 1024, line, ap);
         va_end(ap);
-        FILE *f = _wfopen((GetModuleDir(NULL) + L"plugins\\debug37.txt").c_str(), L"at");
+        FILE *f = _wfopen((GetModuleDir(NULL) + L"vice37.log").c_str(), L"at");
         if (f) {
             fputs(text, f);
             fputs("\n", f);
