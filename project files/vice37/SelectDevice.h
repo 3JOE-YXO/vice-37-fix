@@ -83,7 +83,8 @@ char **GetVideoModeList() {
     for (RwInt32 i = 0; i < numVideoModes; i++) {
         RwVideoMode mode;
         RwEngineGetVideoModeInfo(&mode, i);
-        if ((mode.width != 640 || mode.height != 480) && (gVideoMemorySize - mode.width * mode.height * mode.depth / 8) <= 0xC00000)
+//      if ((mode.width != 640 || mode.height != 480) && (gVideoMemorySize - mode.width * mode.height * mode.depth / 8) <= 0xC00000)
+        if (0)
             videoModeList[i] = nullptr;
         else
         {
@@ -173,6 +174,7 @@ void WINAPI OnSetWindowPos(HWND hWnd, HWND hWndInsertAfter, int X, int Y, int cx
     int x = (GetSystemMetrics(SM_CXSCREEN) - (rc.right - rc.left)) / 2;
     int y = (GetSystemMetrics(SM_CYSCREEN) - (rc.bottom - rc.top)) / 2;
     SetWindowPos(hWnd, hWndInsertAfter, x, y, 0, 0, SWP_FRAMECHANGED | SWP_NOSIZE | SWP_NOZORDER);
+    SetWindowLong(hWnd, GWL_STYLE, WS_VISIBLE | WS_POPUP | WS_CLIPSIBLINGS | WS_CLIPCHILDREN);
 }
 
 void SetVideoMode(RwInt32 mode) {
