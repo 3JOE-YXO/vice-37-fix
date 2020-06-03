@@ -16,7 +16,7 @@ BOOL APIENTRY DllMain(HMODULE module, DWORD reason, LPVOID reserved) {
     if (reason == DLL_PROCESS_ATTACH) {
         gDebug = GetPrivateProfileIntW(L"MAIN", L"DEBUG", 0, (GetModuleDir(NULL) + L"plugins\\vice37.ini").c_str()) == 1;
         if (gDebug) {
-            FILE *f = fopen("plugins\\debug37.txt", "wt");
+            FILE *f = fopen("vice37.log", "wt");
             if (f)
                 fclose(f);
             CPatch::RedirectJump(0x401000, DebugLine);
